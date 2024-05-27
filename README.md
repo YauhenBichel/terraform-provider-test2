@@ -1090,3 +1090,22 @@ A Run method that executes the function code.
 - go install .
 - terraform apply -auto-approve
 total_price = 5.43
+
+## automated acceptance testing
+The testing framework is built on top of standard go test command functionality and calls actual Terraform commands, such as terraform apply, terraform import, and terraform destroy. Unlike manual testing, you do not have to locally reinstall the provider on code updates or switch directories to use the expected Terraform configuration when you run the automated tests.
+
+- TF_ACC=1 go test -count=1 -v
+- TF_ACC=1 go test -count=1 -run='TestAccOrderResource' -v
+- TF_ACC=1 go test -count=1 -run='TestComputeTaxFunction' -v
+
+TF_ACC=1 go test -count=1 -v
+=== RUN   TestAccCoffeesDataSource
+--- PASS: TestAccCoffeesDataSource (0.39s)
+=== RUN   TestComputeTaxFunction_Known
+--- PASS: TestComputeTaxFunction_Known (0.24s)
+=== RUN   TestComputeTaxFunction_Null
+--- PASS: TestComputeTaxFunction_Null (0.09s)
+=== RUN   TestAccOrderResource
+--- PASS: TestAccOrderResource (0.77s)
+PASS
+ok      terraform-provider-hashicups/internal/provider  1.706s
