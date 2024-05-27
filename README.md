@@ -1109,3 +1109,9 @@ TF_ACC=1 go test -count=1 -v
 --- PASS: TestAccOrderResource (0.77s)
 PASS
 ok      terraform-provider-hashicups/internal/provider  1.706s
+
+## Documentation
+- Order can be imported by specifying the numeric identifier.
+- terraform import hashicups_order.example 123
+
+Now that you have implemented the documentation generation functionality for your provider, run the go generate ./... command to generate the documentation.
