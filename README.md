@@ -199,4 +199,10 @@ Changes to Outputs:
         ]
     }
 
-- 
+- TF_LOG or TF_LOG_
+>TF_LOG=TRACE terraform plan
+>TF_LOG=TRACE TF_LOG_PATH=trace.txt terraform plan
+  2024-05-27T19:20:51.722+0100 [DEBUG] provider.terraform-provider-hashicups: Creating HashiCups client: @module=hashicups tf_provider_addr=hashicorp.com/edu/hashicups tf_req_id=7d48ea4a-ba06-53d7-35a9-287e4ef5436e tf_rpc=ConfigureProvider @caller=/Users/yauhenbichel/DevBox/terraform/terraform-provider-test2/internal/provider/provider.go:171 hashicups_host=http://localhost:19090 hashicups_password="***" hashicups_username=education timestamp="2024-05-27T19:20:51.721+0100"
+
+>TF_LOG=INFO terraform plan
+>TF_LOG_PROVIDER=INFO terraform plan
