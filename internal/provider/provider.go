@@ -191,7 +191,9 @@ func (p *hashicupsProvider) Configure(ctx context.Context, req provider.Configur
 
 // to define the provider's resources
 func (p *hashicupsProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return nil
+	return []func() resource.Resource{
+		NewOrderResource,
+	}
 }
 
 // to define the provider's data sources

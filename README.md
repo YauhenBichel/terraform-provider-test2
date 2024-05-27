@@ -206,3 +206,225 @@ Changes to Outputs:
 
 >TF_LOG=INFO terraform plan
 >TF_LOG_PROVIDER=INFO terraform plan
+
+
+>terraform apply
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+hashicups_order.edu: Creating...
+hashicups_order.edu: Creation complete after 0s [id=1]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+edu_coffees = {
+  "coffees" = tolist([
+    {
+      "description" = ""
+      "id" = 1
+      "image" = "/hashicorp.png"
+      "ingredients" = tolist([
+        {
+          "id" = 6
+        },
+      ])
+      "name" = "HCP Aeropress"
+      "price" = 200
+      "teaser" = "Automation in a cup"
+    },
+    {
+      "description" = ""
+      "id" = 2
+      "image" = "/packer.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+        {
+          "id" = 2
+        },
+        {
+          "id" = 4
+        },
+      ])
+      "name" = "Packer Spiced Latte"
+      "price" = 350
+      "teaser" = "Packed with goodness to spice up your images"
+    },
+    {
+      "description" = ""
+      "id" = 3
+      "image" = "/vault.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+        {
+          "id" = 2
+        },
+      ])
+      "name" = "Vaulatte"
+      "price" = 200
+      "teaser" = "Nothing gives you a safe and secure feeling like a Vaulatte"
+    },
+    {
+      "description" = ""
+      "id" = 4
+      "image" = "/nomad.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+        {
+          "id" = 3
+        },
+      ])
+      "name" = "Nomadicano"
+      "price" = 150
+      "teaser" = "Drink one today and you will want to schedule another"
+    },
+    {
+      "description" = ""
+      "id" = 5
+      "image" = "/terraform.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+      ])
+      "name" = "Terraspresso"
+      "price" = 150
+      "teaser" = "Nothing kickstarts your day like a provision of Terraspresso"
+    },
+    {
+      "description" = ""
+      "id" = 6
+      "image" = "/vagrant.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+      ])
+      "name" = "Vagrante espresso"
+      "price" = 200
+      "teaser" = "Stdin is not a tty"
+    },
+    {
+      "description" = ""
+      "id" = 7
+      "image" = "/consul.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+        {
+          "id" = 5
+        },
+      ])
+      "name" = "Connectaccino"
+      "price" = 250
+      "teaser" = "Discover the wonders of our meshy service"
+    },
+    {
+      "description" = ""
+      "id" = 8
+      "image" = "/boundary.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+        {
+          "id" = 6
+        },
+      ])
+      "name" = "Boundary Red Eye"
+      "price" = 200
+      "teaser" = "Perk up and watch out for your access management"
+    },
+    {
+      "description" = ""
+      "id" = 9
+      "image" = "/waypoint.png"
+      "ingredients" = tolist([
+        {
+          "id" = 1
+        },
+        {
+          "id" = 2
+        },
+      ])
+      "name" = "Waypointiato"
+      "price" = 250
+      "teaser" = "Deploy with a little foam"
+    },
+  ])
+}
+edu_order = {
+  "id" = "1"
+  "items" = tolist([
+    {
+      "coffee" = {
+        "description" = ""
+        "id" = 3
+        "image" = "/vault.png"
+        "name" = "Vaulatte"
+        "price" = 200
+        "teaser" = "Nothing gives you a safe and secure feeling like a Vaulatte"
+      }
+      "quantity" = 2
+    },
+    {
+      "coffee" = {
+        "description" = ""
+        "id" = 1
+        "image" = "/hashicorp.png"
+        "name" = "HCP Aeropress"
+        "price" = 200
+        "teaser" = "Automation in a cup"
+      }
+      "quantity" = 2
+    },
+  ])
+  "last_updated" = "Monday, 27-May-24 19:44:30 BST"
+}
+
+- terraform state show hashicups_order.edu
+# hashicups_order.edu:
+resource "hashicups_order" "edu" {
+    id           = "1"
+    items        = [
+        {
+            coffee   = {
+                description = null
+                id          = 3
+                image       = "/vault.png"
+                name        = "Vaulatte"
+                price       = 200
+                teaser      = "Nothing gives you a safe and secure feeling like a Vaulatte"
+            }
+            quantity = 2
+        },
+        {
+            coffee   = {
+                description = null
+                id          = 1
+                image       = "/hashicorp.png"
+                name        = "HCP Aeropress"
+                price       = 200
+                teaser      = "Automation in a cup"
+            }
+            quantity = 2
+        },
+    ]
+    last_updated = "Monday, 27-May-24 19:44:30 BST"
+}
+
+- curl -X GET  -H "Authorization: ${HASHICUPS_TOKEN}" localhost:19090/orders/1
+{"id":1,"items":[{"coffee":{"id":3,"name":"Vaulatte","teaser":"Nothing gives you a safe and secure feeling like a Vaulatte","collection":"Foundations","origin":"Spring 2015","color":"#FFD814","description":"","price":200,"image":"/vault.png","ingredients":[{"ingredient_id":1},{"ingredient_id":2}]},"quantity":2},{"coffee":{"id":1,"name":"HCP Aeropress","teaser":"Automation in a cup","collection":"Foundations","origin":"Summer 2020","color":"#444","description":"","price":200,"image":"/hashicorp.png","ingredients":[{"ingredient_id":6}]},"quantity":2}]}%                                                                                                                   
+
+- 
