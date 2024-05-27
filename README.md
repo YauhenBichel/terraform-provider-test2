@@ -431,4 +431,238 @@ resource "hashicups_order" "edu" {
 > curl -X GET -H "Authorization: ${HASHICUPS_TOKEN}" localhost:19090/orders/1
   {"id":1,"items":[{"coffee":{"id":3,"name":"Vaulatte","teaser":"Nothing gives you a safe and secure feeling like a Vaulatte","collection":"Foundations","origin":"Spring 2015","color":"#FFD814","description":"","price":200,"image":"/vault.png","ingredients":[{"ingredient_id":1},{"ingredient_id":2}]},"quantity":2},{"coffee":{"id":2,"name":"Packer Spiced Latte","teaser":"Packed with goodness to spice up your images","collection":"Origins","origin":"Summer 2013","color":"#1FA7EE","description":"","price":350,"image":"/packer.png","ingredients":[{"ingredient_id":1},{"ingredient_id":2},{"ingredient_id":4}]},"quantity":3}]}% 
 
+- terraform destroy -au
+to-approve
+╷
+│ Warning: Provider development overrides are in effect
+│ 
+│ The following provider development overrides
+│ are set in the CLI configuration:
+│  - hashicorp.com/edu/hashicups in /Users/yauhenbichel/go/bin
+│ 
+│ The behavior may therefore not match any
+│ released version of the provider and applying
+│ changes may cause the state to become
+│ incompatible with published releases.
+╵
+data.hashicups_coffees.edu: Reading...
+hashicups_order.edu: Refreshing state... [id=1]
+data.hashicups_coffees.edu: Read complete after 0s
+
+Terraform used the selected providers to
+generate the following execution plan. Resource
+actions are indicated with the following
+symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # hashicups_order.edu will be destroyed
+  - resource "hashicups_order" "edu" {
+      - id           = "1" -> null
+      - items        = [
+          - {
+              - coffee   = {
+                  - id          = 3 -> null
+                  - image       = "/vault.png" -> null
+                  - name        = "Vaulatte" -> null
+                  - price       = 200 -> null
+                  - teaser      = "Nothing gives you a safe and secure feeling like a Vaulatte" -> null
+                    # (1 unchanged attribute hidden)
+                } -> null
+              - quantity = 2 -> null
+            },
+          - {
+              - coffee   = {
+                  - id          = 2 -> null
+                  - image       = "/packer.png" -> null
+                  - name        = "Packer Spiced Latte" -> null
+                  - price       = 350 -> null
+                  - teaser      = "Packed with goodness to spice up your images" -> null
+                    # (1 unchanged attribute hidden)
+                } -> null
+              - quantity = 3 -> null
+            },
+        ] -> null
+      - last_updated = "Monday, 27-May-24 22:21:32 BST" -> null
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - edu_coffees = {
+      - coffees = [
+          - {
+              - description = ""
+              - id          = 1
+              - image       = "/hashicorp.png"
+              - ingredients = [
+                  - {
+                      - id = 6
+                    },
+                ]
+              - name        = "HCP Aeropress"
+              - price       = 200
+              - teaser      = "Automation in a cup"
+            },
+          - {
+              - description = ""
+              - id          = 2
+              - image       = "/packer.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                  - {
+                      - id = 2
+                    },
+                  - {
+                      - id = 4
+                    },
+                ]
+              - name        = "Packer Spiced Latte"
+              - price       = 350
+              - teaser      = "Packed with goodness to spice up your images"
+            },
+          - {
+              - description = ""
+              - id          = 3
+              - image       = "/vault.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                  - {
+                      - id = 2
+                    },
+                ]
+              - name        = "Vaulatte"
+              - price       = 200
+              - teaser      = "Nothing gives you a safe and secure feeling like a Vaulatte"
+            },
+          - {
+              - description = ""
+              - id          = 4
+              - image       = "/nomad.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                  - {
+                      - id = 3
+                    },
+                ]
+              - name        = "Nomadicano"
+              - price       = 150
+              - teaser      = "Drink one today and you will want to schedule another"
+            },
+          - {
+              - description = ""
+              - id          = 5
+              - image       = "/terraform.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                ]
+              - name        = "Terraspresso"
+              - price       = 150
+              - teaser      = "Nothing kickstarts your day like a provision of Terraspresso"
+            },
+          - {
+              - description = ""
+              - id          = 6
+              - image       = "/vagrant.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                ]
+              - name        = "Vagrante espresso"
+              - price       = 200
+              - teaser      = "Stdin is not a tty"
+            },
+          - {
+              - description = ""
+              - id          = 7
+              - image       = "/consul.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                  - {
+                      - id = 5
+                    },
+                ]
+              - name        = "Connectaccino"
+              - price       = 250
+              - teaser      = "Discover the wonders of our meshy service"
+            },
+          - {
+              - description = ""
+              - id          = 8
+              - image       = "/boundary.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                  - {
+                      - id = 6
+                    },
+                ]
+              - name        = "Boundary Red Eye"
+              - price       = 200
+              - teaser      = "Perk up and watch out for your access management"
+            },
+          - {
+              - description = ""
+              - id          = 9
+              - image       = "/waypoint.png"
+              - ingredients = [
+                  - {
+                      - id = 1
+                    },
+                  - {
+                      - id = 2
+                    },
+                ]
+              - name        = "Waypointiato"
+              - price       = 250
+              - teaser      = "Deploy with a little foam"
+            },
+        ]
+    } -> null
+  - edu_order   = {
+      - id           = "1"
+      - items        = [
+          - {
+              - coffee   = {
+                  - description = ""
+                  - id          = 3
+                  - image       = "/vault.png"
+                  - name        = "Vaulatte"
+                  - price       = 200
+                  - teaser      = "Nothing gives you a safe and secure feeling like a Vaulatte"
+                }
+              - quantity = 2
+            },
+          - {
+              - coffee   = {
+                  - description = ""
+                  - id          = 2
+                  - image       = "/packer.png"
+                  - name        = "Packer Spiced Latte"
+                  - price       = 350
+                  - teaser      = "Packed with goodness to spice up your images"
+                }
+              - quantity = 3
+            },
+        ]
+      - last_updated = "Monday, 27-May-24 22:21:32 BST"
+    } -> null
+hashicups_order.edu: Destroying... [id=1]
+hashicups_order.edu: Destruction complete after 0s
+
+Destroy complete! Resources: 1 destroyed.
+
 - 
