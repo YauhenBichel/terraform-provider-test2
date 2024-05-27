@@ -38,9 +38,9 @@ type hashicupsProvider struct {
 
 // maps provider schema data to a Go type
 type hashicupsProviderModel struct {
-	Host     types.String `tfsdk:host`
-	Username types.String `tfsdk:username`
-	Password types.String `tfsdk:password`
+	Host     types.String `tfsdk:"host"`
+	Username types.String `tfsdk:"username"`
+	Password types.String `tfsdk:"password"`
 }
 
 // to define the provider type name for inclusion in each data source
@@ -184,5 +184,7 @@ func (p *hashicupsProvider) Resources(ctx context.Context) []func() resource.Res
 
 // to define the provider's data sources
 func (p *hashicupsProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return nil
+	return []func() datasource.DataSource{
+		NewCoffeesDataSource,
+	}
 }
