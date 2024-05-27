@@ -427,4 +427,8 @@ resource "hashicups_order" "edu" {
 - curl -X GET  -H "Authorization: ${HASHICUPS_TOKEN}" localhost:19090/orders/1
 {"id":1,"items":[{"coffee":{"id":3,"name":"Vaulatte","teaser":"Nothing gives you a safe and secure feeling like a Vaulatte","collection":"Foundations","origin":"Spring 2015","color":"#FFD814","description":"","price":200,"image":"/vault.png","ingredients":[{"ingredient_id":1},{"ingredient_id":2}]},"quantity":2},{"coffee":{"id":1,"name":"HCP Aeropress","teaser":"Automation in a cup","collection":"Foundations","origin":"Summer 2020","color":"#444","description":"","price":200,"image":"/hashicorp.png","ingredients":[{"ingredient_id":6}]},"quantity":2}]}%                                                                                                                   
 
+- terraform apply -auto-approve
+> curl -X GET -H "Authorization: ${HASHICUPS_TOKEN}" localhost:19090/orders/1
+  {"id":1,"items":[{"coffee":{"id":3,"name":"Vaulatte","teaser":"Nothing gives you a safe and secure feeling like a Vaulatte","collection":"Foundations","origin":"Spring 2015","color":"#FFD814","description":"","price":200,"image":"/vault.png","ingredients":[{"ingredient_id":1},{"ingredient_id":2}]},"quantity":2},{"coffee":{"id":2,"name":"Packer Spiced Latte","teaser":"Packed with goodness to spice up your images","collection":"Origins","origin":"Summer 2013","color":"#1FA7EE","description":"","price":350,"image":"/packer.png","ingredients":[{"ingredient_id":1},{"ingredient_id":2},{"ingredient_id":4}]},"quantity":3}]}% 
+
 - 
