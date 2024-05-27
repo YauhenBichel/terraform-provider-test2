@@ -4,7 +4,7 @@ terraform {
       source  = "hashicorp.com/edu/hashicups"
     }
   }
-  required_version = ">= 1.1.0"
+  required_version = ">= 1.8.0"
 }
 
 provider "hashicups" {
@@ -37,4 +37,8 @@ resource "hashicups_order" "edu" {
 
 output "edu_order" {
   value = hashicups_order.edu
+}
+
+output "total_price" {
+  value = provider::hashicups::compute_tax(5.00, 0.085)
 }

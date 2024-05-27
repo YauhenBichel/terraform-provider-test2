@@ -1081,3 +1081,12 @@ yauhenbichel@192 example %
 
 - terraform show 
 - curl -X GET -H "Authorization: ${HASHICUPS_TOKEN}" localhost:19090/orders/2
+
+- The interface requires the following:
+A Metadata method that sets the function name. Unlike resources and data sources, function names do not start with the provider name.
+A Definition method that defines the parameters, return value, and documentation for the function.
+A Run method that executes the function code.
+
+- go install .
+- terraform apply -auto-approve
+total_price = 5.43
