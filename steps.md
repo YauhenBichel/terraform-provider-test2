@@ -20,3 +20,25 @@
 $ go install .
 
 - terraform plan
+
+- HASHICUPS_HOST=http://localhost:19090 \
+  HASHICUPS_USERNAME=education \
+  HASHICUPS_PASSWORD=test123 \
+  terraform plan
+
+    │ Warning: Provider development overrides are in effect
+│ 
+│ The following provider development overrides are set in the CLI configuration:
+│  - hashicorp.com/edu/hashicups in /Users/yauhenbichel/go/bin
+│ 
+│ The behavior may therefore not match any released version of the provider and applying changes may cause the state to become
+│ incompatible with published releases.
+╵
+data.hashicups_coffees.example: Reading...
+data.hashicups_coffees.example: Read complete after 0s
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+
+- 
