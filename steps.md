@@ -1,0 +1,7 @@
+- go mod edit -module terraform-provider-test2
+- go mod tidy
+- mkdir docker_compose
+- go run main.go
+- terraform init
+- go install .
+- terraform plan
