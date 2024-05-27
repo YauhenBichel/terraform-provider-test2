@@ -1,64 +1,202 @@
-# Terraform Provider Scaffolding (Terraform Plugin Framework)
+- go mod edit -module terraform-provider-test2
+- go mod tidy
+- mkdir docker_compose
+- go run main.go
+- terraform init
+- go install .
+- terraform plan
+- go get github.com/hashicorp-demoapp/hashicups-client-go@v0.1.0
+- go mod tidy
+- go install .
+- cd docker_compose
+- docker-compose up
+- curl localhost:19090/health/readyz
+    kill postgres if it is running locally
+- curl -X POST localhost:19090/signup -d '{"username":"education", "password":"test123"}'
+- {"UserID":1,"Username":"education","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY5MTMxNDMsInRva2VuX2lkIjoxLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImVkdWNhdGlvbiJ9.6yVNw_hYe1oPTiK5e0EmddkzTrxan0q-dMD4F070xSM"}
+    export HASHICUPS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY5MTMxNDMsInRva2VuX2lkIjoxLCJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImVkdWNhdGlvbiJ9.6yVNw_hYe1oPTiK5e0EmddkzTrxan0q-dMD4F070xSM
 
-_This template repository is built on the [Terraform Plugin Framework](https://github.com/hashicorp/terraform-plugin-framework). The template repository built on the [Terraform Plugin SDK](https://github.com/hashicorp/terraform-plugin-sdk) can be found at [terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding). See [Which SDK Should I Use?](https://developer.hashicorp.com/terraform/plugin/framework-benefits) in the Terraform documentation for additional information._
+- Build and install the updated provider.
+$ go install .
 
-This repository is a *template* for a [Terraform](https://www.terraform.io) provider. It is intended as a starting point for creating Terraform providers, containing:
+- terraform plan
 
-- A resource and a data source (`internal/provider/`),
-- Examples (`examples/`) and generated documentation (`docs/`),
-- Miscellaneous meta files.
+- HASHICUPS_HOST=http://localhost:19090 \
+  HASHICUPS_USERNAME=education \
+  HASHICUPS_PASSWORD=test123 \
+  terraform plan
 
-These files contain boilerplate code that you will need to edit to create your own Terraform provider. Tutorials for creating Terraform providers can be found on the [HashiCorp Developer](https://developer.hashicorp.com/terraform/tutorials/providers-plugin-framework) platform. _Terraform Plugin Framework specific guides are titled accordingly._
+    │ Warning: Provider development overrides are in effect
+│ 
+│ The following provider development overrides are set in the CLI configuration:
+│  - hashicorp.com/edu/hashicups in /Users/yauhenbichel/go/bin
+│ 
+│ The behavior may therefore not match any released version of the provider and applying changes may cause the state to become
+│ incompatible with published releases.
+╵
+data.hashicups_coffees.example: Reading...
+data.hashicups_coffees.example: Read complete after 0s
 
-Please see the [GitHub template repository documentation](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) for how to create a new repository from this template on GitHub.
+No changes. Your infrastructure matches the configuration.
 
-Once you've written your provider, you'll want to [publish it on the Terraform Registry](https://developer.hashicorp.com/terraform/registry/providers/publishing) so that others can use it.
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
 
-## Requirements
+- block data read from from server using client and updated state
+terraform plan
+╷
+│ Warning: Provider development overrides are in effect
+│ 
+│ The following provider development overrides are set in the CLI configuration:
+│  - hashicorp.com/edu/hashicups in /Users/yauhenbichel/go/bin
+│ 
+│ The behavior may therefore not match any released version of the provider and applying changes may cause the state to become
+│ incompatible with published releases.
+╵
+data.hashicups_coffees.edu: Reading...
+data.hashicups_coffees.edu: Read complete after 0s
 
-- [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
-- [Go](https://golang.org/doc/install) >= 1.21
+Changes to Outputs:
+  + edu_coffees = {
+      + coffees = [
+          + {
+              + description = ""
+              + id          = 1
+              + image       = "/hashicorp.png"
+              + ingredients = [
+                  + {
+                      + id = 6
+                    },
+                ]
+              + name        = "HCP Aeropress"
+              + price       = 200
+              + teaser      = "Automation in a cup"
+            },
+          + {
+              + description = ""
+              + id          = 2
+              + image       = "/packer.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                  + {
+                      + id = 2
+                    },
+                  + {
+                      + id = 4
+                    },
+                ]
+              + name        = "Packer Spiced Latte"
+              + price       = 350
+              + teaser      = "Packed with goodness to spice up your images"
+            },
+          + {
+              + description = ""
+              + id          = 3
+              + image       = "/vault.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                  + {
+                      + id = 2
+                    },
+                ]
+              + name        = "Vaulatte"
+              + price       = 200
+              + teaser      = "Nothing gives you a safe and secure feeling like a Vaulatte"
+            },
+          + {
+              + description = ""
+              + id          = 4
+              + image       = "/nomad.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                  + {
+                      + id = 3
+                    },
+                ]
+              + name        = "Nomadicano"
+              + price       = 150
+              + teaser      = "Drink one today and you will want to schedule another"
+            },
+          + {
+              + description = ""
+              + id          = 5
+              + image       = "/terraform.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                ]
+              + name        = "Terraspresso"
+              + price       = 150
+              + teaser      = "Nothing kickstarts your day like a provision of Terraspresso"
+            },
+          + {
+              + description = ""
+              + id          = 6
+              + image       = "/vagrant.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                ]
+              + name        = "Vagrante espresso"
+              + price       = 200
+              + teaser      = "Stdin is not a tty"
+            },
+          + {
+              + description = ""
+              + id          = 7
+              + image       = "/consul.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                  + {
+                      + id = 5
+                    },
+                ]
+              + name        = "Connectaccino"
+              + price       = 250
+              + teaser      = "Discover the wonders of our meshy service"
+            },
+          + {
+              + description = ""
+              + id          = 8
+              + image       = "/boundary.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                  + {
+                      + id = 6
+                    },
+                ]
+              + name        = "Boundary Red Eye"
+              + price       = 200
+              + teaser      = "Perk up and watch out for your access management"
+            },
+          + {
+              + description = ""
+              + id          = 9
+              + image       = "/waypoint.png"
+              + ingredients = [
+                  + {
+                      + id = 1
+                    },
+                  + {
+                      + id = 2
+                    },
+                ]
+              + name        = "Waypointiato"
+              + price       = 250
+              + teaser      = "Deploy with a little foam"
+            },
+        ]
+    }
 
-## Building The Provider
-
-1. Clone the repository
-1. Enter the repository directory
-1. Build the provider using the Go `install` command:
-
-```shell
-go install
-```
-
-## Adding Dependencies
-
-This provider uses [Go modules](https://github.com/golang/go/wiki/Modules).
-Please see the Go documentation for the most up to date information about using Go modules.
-
-To add a new dependency `github.com/author/dependency` to your Terraform provider:
-
-```shell
-go get github.com/author/dependency
-go mod tidy
-```
-
-Then commit the changes to `go.mod` and `go.sum`.
-
-## Using the provider
-
-Fill this in for each provider
-
-## Developing the Provider
-
-If you wish to work on the provider, you'll first need [Go](http://www.golang.org) installed on your machine (see [Requirements](#requirements) above).
-
-To compile the provider, run `go install`. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
-
-To generate or update documentation, run `go generate`.
-
-In order to run the full suite of Acceptance tests, run `make testacc`.
-
-*Note:* Acceptance tests create real resources, and often cost money to run.
-
-```shell
-make testacc
-```
+- 
